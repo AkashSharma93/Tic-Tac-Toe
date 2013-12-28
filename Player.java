@@ -51,6 +51,6 @@ public class Player {
 	public static void main(String[] args) {
 		Player player = new Player();
 
-		UserLogin(player);
+		new UserLogin(player);
 	}
 }
