@@ -51,6 +51,9 @@ public class Player {
 	public static void main(String[] args) {
 		Player player = new Player();
 
-		new UserLogin(player);
+		Lobby lobby = new Lobby();
+		lobby.showLobby();
+
+		new UserLogin(player, lobby);
 	}
 }
