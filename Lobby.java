@@ -4,7 +4,7 @@ public class Lobby {
 	Player player;
 	JFrame frame;
 
-	public void setPlayer(Player p) {
+	public Lobby(Player p) {
 		player = p;
 	}
 
