@@ -7,6 +7,7 @@ public class Player {
 	Socket sock;
 	BufferedReader reader;
 	PrintWriter writer;
+	String serverAddress = ""; // To implement
 
 	public void setName(String name) {
 		playerName = name;
@@ -47,13 +48,26 @@ public class Player {
 	public PrintWriter getWriter() {
 		return writer;
 	}
+	
+	public void setupNetworking() {
+		try {
+			sock = new Socket(serverAddress, 7000);
+			reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+			writer = new PrintWriter(sock.getOutputStream());
+		}
+		catch(UnknownHostException ex) {
+			ex.printStackTrace();
+		}
+		catch(IOException ex) {
+			ex.printStackTrace();
+		}
+		
+	}
 
 	public static void main(String[] args) {
 		Player player = new Player();
 
-		Lobby lobby = new Lobby(player);
-		lobby.showLobby();
-
+		new Lobby(player);
 		new UserLogin(player);
 	}
 }

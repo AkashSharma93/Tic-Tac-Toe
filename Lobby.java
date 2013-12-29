@@ -7,6 +7,7 @@ public class Lobby {
 
 	public Lobby(Player p) {
 		player = p;
+		showLobby();
 	}
 
 	public void showLobby() {
