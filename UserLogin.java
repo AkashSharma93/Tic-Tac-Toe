@@ -24,20 +24,20 @@ public class UserLogin {
 		JPanel panel = new JPanel();
 		JButton loginButton = new JButton("Login");
 		loginButton.setSize(75, 50);
-		loginButton.addKeyListener(new KeyListener() {
+		txtName.addKeyListener(new KeyListener() {
 
 			@Override
-			public void keyPressed(KeyEvent arg0) {
-				if (arg0.getKeyChar() == '\n') {
-					handleLogin();
-				}
-			}
+			public void keyPressed(KeyEvent arg0) {}
 
 			@Override
 			public void keyReleased(KeyEvent arg0) {}
 
 			@Override
-			public void keyTyped(KeyEvent arg0) {}
+			public void keyTyped(KeyEvent arg0) {
+				if (arg0.getKeyChar() == '\n') {
+					handleLogin();
+				}
+			}
 			
 		});
 		
