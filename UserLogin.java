@@ -60,6 +60,7 @@ public class UserLogin {
 		frame.setSize(200, 100);
 		frame.setTitle("User Login");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 	
