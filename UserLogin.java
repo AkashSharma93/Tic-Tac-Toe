@@ -4,7 +4,7 @@ import java.awt.event.*;
 public class UserLogin {
 	Player player;
 	JFrame frame;
-	JTextField txtName = new JTextField();
+	JTextField txtName = new JTextField(15);
 	
 	public UserLogin(Player p) {
 		setPlayer(p);
@@ -21,12 +21,9 @@ public class UserLogin {
 		
 		frame = new JFrame();
 		
-		txtName.setSize(100, 50);
-		txtName.setText("aaa");
-		
 		JPanel panel = new JPanel();
 		JButton loginButton = new JButton("Login");
-		loginButton.setSize(100, 50);
+		loginButton.setSize(75, 50);
 		loginButton.addKeyListener(new KeyListener() {
 
 			@Override
