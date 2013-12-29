@@ -19,6 +19,8 @@ public class Lobby {
 //		Bounds b = new Bounds();
 //		frame.add(b);
 
+		displayStat();
+		
 		frame.setVisible(true);
 	}
 
