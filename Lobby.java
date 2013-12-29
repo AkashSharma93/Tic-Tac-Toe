@@ -19,11 +19,24 @@ public class Lobby {
 //		Bounds b = new Bounds();
 //		frame.add(b);
 
-		JLabel label = new JLabel("Player details:");
-		label.setBounds(10, 10, 200, 20);
-		frame.add(label);
-
 		frame.setVisible(true);
+	}
+
+	public void displayStat() {
+		JLabel heading1, heading2;
+		JLabel playerName;
+
+		heading1 = new JLabel("Player details...");
+		heading1.setBounds(10, 10, 150, 20);
+		frame.add(heading1);
+
+		heading2 = new JLabel("Player Statistics...");
+		heading2.setBounds(10, 60, 150, 50);
+		frame.add(heading2);
+
+//		playerName = new JLabel(player.getName());
+//		playerName.setBounds(10, 20, 150, 30);
+//		frame.add(playerName);
 	}
 
 //	public class Bounds extends JPanel{
