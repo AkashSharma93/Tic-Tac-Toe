@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 
 public class Server {
-	int port = 5555;
+	int port = 7000;
 	ServerSocket serverSocket;
 	ArrayList<PrintWriter> outputStreams = new ArrayList<PrintWriter>();
 	ArrayList<Player> playerList = new ArrayList<Player>();
