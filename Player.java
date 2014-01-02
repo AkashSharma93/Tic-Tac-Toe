@@ -1,12 +1,14 @@
 import java.net.*;
 import java.io.*;
 
-public class Player {
+public class Player implements Serializable {
+	private static final long serialVersionUID = 1L;
 	String playerName;
 	char symbol;
 	Socket sock;
 	BufferedReader reader;
 	PrintWriter writer;
+	ObjectOutputStream objectOutputStream;
 	String serverAddress = ""; // To implement
 
 	public void setName(String name) {
@@ -54,6 +56,8 @@ public class Player {
 			sock = new Socket(serverAddress, 7000);
 			reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			writer = new PrintWriter(sock.getOutputStream());
+			objectOutputStream = new ObjectOutputStream(sock.getOutputStream());
+			objectOutputStream.writeObject(this);
 		}
 		catch(UnknownHostException ex) {
 			ex.printStackTrace();
