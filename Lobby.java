@@ -1,15 +1,20 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.util.*;
+import java.net.*;
 
 public class Lobby {
 	Player player;
 	JFrame frame;
 	JPanel mainPanel, playerPanel, centerPanel, playerListPanel, playerInnerPanel;
-	JList playerList, battleRequestList;
+	JList<String> playerList, battleRequestList;
 
 	public Lobby(Player p) {
 		player = p;
 		showLobby();
+		
+		new Thread(new IncomingMsgListener()).start();
 	}
 	
 	public void showLobby() {
@@ -32,7 +37,7 @@ public class Lobby {
 		
 		//Centre Area.
 		centerPanel = new JPanel();
-		battleRequestList = new JList();
+		battleRequestList = new JList<String>();
 		JScrollPane scroller1 = new JScrollPane(battleRequestList);
 		scroller1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scroller1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -41,7 +46,7 @@ public class Lobby {
 		
 		//Player List
 		playerListPanel = new JPanel();
-		playerList = new JList();
+		playerList = new JList<String>();
 		JScrollPane scroller2 = new JScrollPane(playerList);
 		scroller2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scroller2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -57,5 +62,30 @@ public class Lobby {
 		frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		
 		frame.setVisible(true);
+	}
+
+	public class IncomingMsgListener implements Runnable {
+		ObjectInputStream ois;
+
+		public IncomingMsgListener() {
+			try {
+				ois = new ObjectInputStream(player.getSocket().getInputStream());
+			} catch(Exception ex) { ex.printStackTrace(); }
+		}
+
+		public void run() {
+			DefaultListModel<String> model = new DefaultListModel<String>();
+			ArrayList<String> list;
+
+			try {
+				while((list = (ArrayList<String>) ois.readObject()) != null) {
+					if(list.get(0) == "playerList") {
+						for(int i = 1; i < list.size(); i++)
+							model.addElement(list.get(i));
+						playerList.setModel(model);
+					}	
+				}
+			} catch(Exception ex) { ex.printStackTrace(); }
+		}
 	}
 }

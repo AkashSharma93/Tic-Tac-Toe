@@ -9,7 +9,7 @@ public class Player implements Serializable {
 	BufferedReader reader;
 	PrintWriter writer;
 	ObjectOutputStream objectOutputStream;
-	String serverAddress = ""; // To implement
+	String serverAddress = "127.0.0.1"; // To implement
 
 	public void setName(String name) {
 		playerName = name;
@@ -70,7 +70,7 @@ public class Player implements Serializable {
 
 	public static void main(String[] args) {
 		Player player = new Player();
-
+	
 		new Lobby(player);
 		new UserLogin(player);
 	}

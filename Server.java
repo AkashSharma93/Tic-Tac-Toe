@@ -32,15 +32,40 @@ public class Server {
 			objectInputStream = new ObjectInputStream(clientSocket.getInputStream());
 			player = (Player) objectInputStream.readObject();
 			
-			PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
-			player.setWriter(writer);
+			playerList.add(player);
 		}
+
 		@Override
 		public void run() {
-			/* This method will be implemented after the main Game class
-			 * has been implemented. It will read player moves from the clients.
-			 */
-			 
+			String message;
+			
+			echo();
+//			while((message = reader.readLine()) != null) {
+			
+//			}
 		}
+	}
+
+	public void echo(String message) {
+		//do something
+	}
+
+	public void echo() {
+		ArrayList<String> players = new ArrayList<String>();
+
+		for(Player player: playerList) {
+			players.add(player.getName());
+		}
+		
+		for(Player player: playerList) {
+			try {
+			ObjectOutputStream oos = new ObjectOutputStream(player.getSocket().getOutputStream());
+			oos.writeObject(players);
+			} catch(Exception ex) { ex.printStackTrace(); }
+		}
+	}
+
+	public static void main(String[] args) {
+		new Server();
 	}
 }
