@@ -4,12 +4,8 @@ import java.awt.*;
 public class Lobby {
 	Player player;
 	JFrame frame;
-//	Bounds b;
-//	JButton newChallenge;
-//	JTextArea playerList;
-	JPanel mainPanel, playerPanel, centerPanel, playerListPanel;
+	JPanel mainPanel, playerPanel, centerPanel, playerListPanel, playerInnerPanel;
 	JList playerList, battleRequestList;
-//	int width, height;
 
 	public Lobby(Player p) {
 		player = p;
@@ -26,6 +22,13 @@ public class Lobby {
 		//Player details.
 		playerPanel = new JPanel();
 		playerPanel.setLayout(new BorderLayout());
+
+		playerInnerPanel = new JPanel();	//To place all the buttons and stuff
+		playerInnerPanel.setLayout(new BoxLayout(playerInnerPanel, BoxLayout.Y_AXIS));
+
+		playerInnerPanel.add(new JLabel("Player Details"));
+
+		playerPanel.add(playerInnerPanel);
 		
 		//Centre Area.
 		centerPanel = new JPanel();
